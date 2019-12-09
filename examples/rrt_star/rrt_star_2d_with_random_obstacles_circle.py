@@ -21,18 +21,18 @@ prc = 0.1  # probability of checking for a connection to goal
 
 # create Search Space
 X = SearchSpace(X_dimensions)
-n = 50
+n = 1
 Obstacles = generate_random_obstacles(X, x_init, x_goal, n)
 # create rrt_search
 rrt = RRTStar(X, Q, x_init, x_goal, max_samples, r, prc, rewire_count)
 path = rrt.rrt_star()
 
 # plot
-plot = Plot("rrt_star_2d_with_random_obstacles")
+plot = Plot("rrt_star_2d_with_random_obstacles_circle")
 plot.plot_tree(X, rrt.trees)
 if path is not None:
     plot.plot_path(X, path)
-plot.plot_obstacles(X, Obstacles)
+plot.plot_obstacles(X, Obstacles, type='circle')
 plot.plot_start(X, x_init)
 plot.plot_goal(X, x_goal)
 plot.draw(auto_open=True)
